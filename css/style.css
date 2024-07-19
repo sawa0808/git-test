@@ -1,0 +1,286 @@
+@charset "utf-8";
+
+/************** base *************/
+
+body {
+  font-family: "PT Serif", serif;
+  letter-spacing: 0.1em;
+  line-height: 1.5;
+  color: var(--Black-color);
+}
+:root {
+  --yellow-color: #e0c900;
+  --background-color1: #d9d9d9;
+  --background-color2: #9b8383;
+  --border-color: #e09400;
+  --accent-color: #fb5a00;
+  --gray-color: #484848;
+  --white-color: #ffffff;
+  --Black-color: #000000;
+}
+:root {
+  /* コンテンツ幅管理用の変数 */
+  --content-width-sm: 680px;
+  --content-width-md: 960px;
+  --content-width: 1080px;
+}
+:root {
+  /* z-index管理用の変数 */
+  --z-index-back: -1;
+  --z-index-default: 1;
+  --z-index-header: 100;
+  --z-index-menu: 150;
+  --z-index-modal: 200;
+}
+
+/* base */
+.container-sm,
+.container-md,
+.container {
+  width: 100%;
+  padding: 0 16px;
+  margin: 0 auto;
+}
+
+.container-sm {
+  max-width: calc(var(--content-width-sm) + 32px);
+}
+
+.container-md {
+  max-width: calc(var(--content-width-md) + 32px);
+}
+.container {
+  max-width: calc(var(--content-width) + 32px);
+}
+
+.contents {
+  padding: 60px 0 0 0;
+} /* contentsクラスをつけることで上部の余白を管理 */
+
+@media screen and (min-width: 1080px) {
+  .contents {
+    padding: 80px 0 0 0;
+  }
+}
+/*************** Layout ***************/
+
+/*************** Modifier *************/
+.header {
+  width: 100%;
+  height: 72px;
+  /*position: fixed;*/
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  top: 0;
+  left: 0;
+}
+@media screen and (min-width: 1080px) {
+  .header {
+    padding: 0 48px;
+  }
+}
+.header__logo {
+  font-weight: bold;
+  font-size: 24px;
+  z-index: 999;
+}
+.header__logo-img {
+  width: 80px;
+  height: 40px;
+  object-fit: cover;
+}
+/* spナビメニュー */
+
+/* spナビをデフォルトで非表示 */
+.sp-nav {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100vh;
+  transform: translateX(-100%);
+  background-color: #fff; /*ハンバーガーメニュークリック時のナビゲーションメニュー背景色*/
+  transition: ease 0.4s;
+  opacity: 0;
+  z-index: 50;
+  background: var(--background-color1);
+}
+/* ナビボタンを押すとspナビを表示 */
+.sp-nav.active {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100vh;
+  transform: translateX(0%);
+  background-color: #fff; /*spナビの背景色*/
+  transition: ease 0.4s;
+  opacity: 1;
+  background: var(--background-color1);
+}
+/* spナビリストを上下中央寄せ */
+.sp-nav__list {
+  width: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0;
+  padding-left: 20px;
+}
+/* ナビのリンク */
+.sp-nav__item a {
+  color: black; /*リンクの文字色*/
+  width: 100%;
+  display: block;
+  text-align: justify;
+  font-size: 20px;
+  margin-bottom: 24px;
+}
+
+.sp-nav__item:last-child a {
+  margin-bottom: 0;
+}
+
+/* ハンバーガーメニューのボタン位置 */
+.hamburger-menu {
+  width: 32px; /*ハンバーガーメニューの線の幅*/
+  height: 24px;
+  position: fixed;
+  top: calc((72px - 24px) / 2); /*(ヘッダーの高さ)ー(メニューボタンの高さ)/2*/
+  right: 20px;
+  background: transparent;
+  z-index: 999;
+}
+/* 画面幅が以下のサイズを超えたら非表示 */
+@media screen and (min-width: 1080px) {
+  .hamburger-menu {
+    display: none;
+  }
+}
+/* ハンバーガーメニューのボタンサイズ */
+.hamburger-menu__icon {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+/* ハンバーガーメニューの線 */
+.hamburger-menu__icon span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #000; /*メニューバーの色*/
+  transition: ease 0.4s;
+}
+
+.hamburger-menu span:nth-child(1) {
+  top: 0;
+}
+
+.hamburger-menu span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hamburger-menu span:nth-child(3) {
+  top: 100%;
+  transform: translateY(-100%);
+}
+/* ハンバーガーメニューボタンをクリックしたときの動き */
+.hamburger-menu.active span:nth-child(1) {
+  top: 50%;
+  transform: translateY(50%);
+  transform: rotate(135deg);
+}
+.hamburger-menu.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger-menu.active span:nth-child(3) {
+  top: 50%;
+  transform: translateY(50%);
+  transform: rotate(-135deg);
+}
+
+/*************** Utility **************/
+
+/*************** Top-page **************/
+
+/*************** 以下、北村記述 **************/
+
+main {
+  background: url(../img/background-img.jpg);
+}
+.mainV__spotlight {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 32px;
+  margin-bottom: 10px;
+}
+.mainV__spotlight-circle {
+  position: relative;
+  border: solid 3px var(--yellow-color);
+  border-radius: 50%;
+  width: 33.3%;
+  height: 130px;
+}
+.mainV__spotlight-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-size: 16px;
+  font-family: "PT Serif";
+}
+.mainV__h2--ttile {
+  font-size: 46px;
+  font-family: "PT Serif";
+  font-weight: bold;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+.mainV__h2--ttile .ideal {
+  font-size: 48px;
+  color: transparent;
+  background: linear-gradient(
+    0deg,
+    #212121 0%,
+    #424242 60%,
+    #fafafa 70%,
+    #424242 80%,
+    #212121 90% 100%
+  );
+  -webkit-background-clip: text;
+}
+.mainV__h2--ttile rt {
+  font-size: 14px;
+}
+.mainV__text {
+  margin-left: 23px;
+  margin-bottom: 115px;
+}
+.mainV__lead {
+  position: relative;
+}
+.mainV__lead-text {
+  background-color: var(--gray-color);
+  color: var(--yellow-color);
+  border-bottom: var(--white-color) 1px solid;
+  padding: 12px 0 12px 24px;
+  font-weight: bold;
+}
+.mainV__lead-img {
+  position: absolute;
+  bottom: 16px;
+  right: 24px;
+}

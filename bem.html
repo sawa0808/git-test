@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- BEMの解説 -->
+    
+    <!-- 命名規則：block__Element--Modifier -->
+    
+    <!-- blockについて -->
+        <!-- 参考クラス名 -->
+            <!-- mainV          大きな囲い（入れ物）にはblockで指定します。-->
+            <!-- mainV-wrap     ブロックの単語を区切る場合はハイフン１つで区切ります -->
+            <div class="mainV">
+
+            </div>
+    
+
+            
+    <!-- Elementについて -->
+        <!-- 参考クラス名 -->
+            <!-- mainV__head    　　　　　Elementはブロックの中身に指定しますが、１単語で完結する場合は左のように書きます　（メインビジュアルの見出し）ってイメージです！-->
+            <!-- mainV-wrap__disc-wrap 　Element名を区切る場合もハイフン１つで区切ります　（メインビジュアルの説明を囲ったBOXだよ）ってイメージです！-->
+            
+            <div class="mainV">
+                <div class="mainV__head">見出しが入ります</div>
+            </div>
+
+            <div class="mainV">
+                <div class="mainV__disc-wrap">
+                    <p class="mainV__disc-head">メインビジュアルの見出し</p>
+                    <p class="mainV__disc-text">メインビジュアルのテキスト</p>
+                </div>
+            </div>
+
+
+    <!-- Modifierについて -->
+        <!-- 参考クラス名 -->
+            <!-- header__nav-item--blue  ナビゲーションのitemが複数あって、そのうちの１つだけに背景色が青くなってる場合などに使用します！-->
+            
+            <nav class="header-nav">
+                <ul class="header-nav__list">
+                    <li class="header-nav__item">
+                        <a href="" class="header-nav__link">メニュー</a>
+                    </li>
+                    <li class="header-nav__item">
+                        <a href="" class="header-nav__link">料金</a>
+                    </li>
+                    <li class="header-nav__item">
+                        <a href="" class="header-nav__link header-nav__link--blue">お問い合わせ</a><!--ここだけ背景色あり-->
+                    </li>
+                </ul>
+            </nav>
+    </body>
+</html>
